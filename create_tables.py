@@ -6,7 +6,8 @@ id serial PRIMARY KEY,
 username varchar(255) UNIQUE,
 first_name varchar(25),
 last_name varchar(25),
-password varchar(80)
+password varchar(80),
+loged_in boolean DEFAULT False
 );
 """
 
