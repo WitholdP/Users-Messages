@@ -2,24 +2,31 @@
 
 {% block content %}
 <div class="container-fluid">
-  <h1>Users</h1>
+  <br>
+  <div class="d-flex justify-content-center"> <h1>Users</h1></div>
+  <br><br>
   <table class="table table-striped">
     <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">User ID</th>
       <th scope="col">Username</th>
       <th scope="col">First name</th>
       <th scope="col">Last name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-
+    {% for user in users %}
+      <tr>
+        <th scope="row">{{ user.0 }}</th>
+        <td>{{ user.1 }}</td>
+        <td>{{ user.2 }}</td>
+        <td>{{ user.3 }}</td>
+        <td><a href="#"><button type="button" class="btn btn-primary">Edit</button></a></td>
+        <td><a href="#"><button type="button" class="btn btn-danger">Delete</button></a></td>
+      </tr>
+    {% endfor %}
   </tbody>
   </table>
 </div>

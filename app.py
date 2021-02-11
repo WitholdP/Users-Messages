@@ -61,9 +61,9 @@ def users():
     cursor = connection.cursor()
     check_for_login = User.login_check(cursor)
     if check_for_login:
-        loged_in_check = True
+        users = User.get_all_users(cursor)
         connection.close()
-        return render_template('users.html', check_for_login = check_for_login)
+        return render_template('users.html', check_for_login = check_for_login, users = users)
 
     connection.close()
     return redirect('/')
@@ -89,7 +89,6 @@ def rides():
     cursor = connection.cursor()
     check_for_login = User.login_check(cursor)
     if check_for_login:
-        loged_in_check = True
         connection.close()
         return render_template('rides.html', check_for_login = check_for_login)
 
@@ -107,15 +106,38 @@ def logout():
 
 @app.route('/edit', methods = ['GET', 'POST'])
 def edit():
+    message = None
     connection = connect()
     cursor = connection.cursor()
     check_for_login = User.login_check(cursor)
     if check_for_login:
+        if request.method == 'POST':
+            update_user = User.update_user(cursor, **request.form)
+            if update_user:
+                message = "Succesfully updated user data"
         connection.close()
-        return render_template('edit.html', check_for_login = check_for_login)
+        return render_template('edit.html', check_for_login = check_for_login, message = message)
 
     connection.close()
     return redirect('/')
+
+
+@app.route('/delete/<int:id>/', methods = ['GET', 'POST'])
+def delete(id):
+    message = None
+    connection = connect()
+    cursor = connection.cursor()
+    check_for_login = User.login_check(cursor)
+    if check_for_login:
+        if request.method == 'POST':
+            delete_account = User.delete_account(cursor, id, request.form['password'])
+            if delete_account:
+                connection.close()
+                return redirect('/')
+            else:
+                message = 'Wrong password bitch!'
+        connection.close()
+        return render_template('delete.html', check_for_login = check_for_login, message = message)
 
 
 if __name__ == '__main__':

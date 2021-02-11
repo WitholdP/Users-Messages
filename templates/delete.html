@@ -1,0 +1,37 @@
+{% extends 'base.html'%}
+
+{% block content %}
+{% if message %}
+  <div class="alert alert-danger" role="alert">
+    {{ message }}
+  </div>
+{% endif %}
+
+  <div class="container-fluid">
+    <br>
+    <br>
+    <h2 class="d-flex justify-content-center">Are you sure you want to delete the account?</h2>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <!-- column 1 -->
+        </div>
+        <div class="col-6">
+          <form class="" method="post">
+            <div class="row mb-3">
+              <label for="password"> Type in password to confirm deletion </label>
+              <input type="password" id="password" class="form-control" placeholder="Password" name="password">
+            </div>
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+        <div class="col d-flex justify-content-end align-items-end">
+          <!-- column 3 -->
+        </div>
+      </div>
+  </div>
+
+
+
+
+{% endblock %}

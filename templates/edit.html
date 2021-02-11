@@ -32,14 +32,14 @@
             </div>
             <div class="row mb-3">
               <label for="password"> Type in new password to change </label>
-              <input type="password" id="password" class="form-control" placeholder="Password" name="password">
+              <input type="password" id="password" class="form-control" placeholder="Password" name="password" value="{{ check_for_login.4 }}">
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
           </form>
         </div>
-        <div class="col">
-          <div class="d-flex align-self-end">
-            <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
+        <div class="col d-flex justify-content-end align-items-end">
+          <div class="">
+            <a href="/delete/{{ check_for_login.0 }}"><button type="button" class="btn btn-danger">Delete</button></a>
           </div>
         </div>
       </div>

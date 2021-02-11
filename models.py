@@ -32,7 +32,6 @@ class User(object):
         sql = f"""SELECT * FROM users WHERE username = '{username}' ;"""
         cursor.execute(sql)
         check_if_exists = cursor.fetchone()
-
         if check_if_exists:
             if password == check_if_exists[4]:
                 log_in_sql = f"""UPDATE users SET loged_in = True WHERE username = '{username}';"""
@@ -62,3 +61,36 @@ class User(object):
         sql = """UPDATE users SET loged_in = False WHERE loged_in = True"""
         cursor.execute(sql)
         return True
+
+
+    @staticmethod
+    def update_user(cursor, username, first_name, last_name, password):
+        """Gets all the data from edit form (regardless of change) and updates it in the database"""
+        sql = f"""UPDATE users SET first_name = '{first_name}', last_name = '{last_name}', password = '{password}' WHERE username = '{username}'"""
+        cursor.execute(sql)
+        return True
+
+
+    @staticmethod
+    def delete_account(cursor, id, password):
+        sql = f"""SELECT * FROM users WHERE id = '{id}' ;"""
+        cursor.execute(sql)
+        fetch_user = cursor.fetchone()
+        if fetch_user:
+            if password == fetch_user[4]:
+                delete_sql = f"""DELETE FROM users WHERE id = '{id}' ;"""
+                cursor.execute(delete_sql)
+                return True
+            else:
+                return False
+
+
+    @staticmethod
+    def get_all_users(cursor):
+        sql = """SELECT * FROM users"""
+        users_list = []
+        cursor.execute(sql)
+        users = cursor.fetchall()
+        for user in users:
+            users_list.append(user)
+        return users_list
