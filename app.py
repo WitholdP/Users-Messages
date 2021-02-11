@@ -111,9 +111,8 @@ def edit():
     cursor = connection.cursor()
     check_for_login = User.login_check(cursor)
     if check_for_login:
-        get_user_detials = User.load_logedin_user(cursor)
         connection.close()
-        return render_template('edit.html', check_for_login = check_for_login, get_user_detials = get_user_detials)
+        return render_template('edit.html', check_for_login = check_for_login)
 
     connection.close()
     return redirect('/')

@@ -12,31 +12,39 @@
     <br>
     <h2 class="d-flex justify-content-center">Edit account details</h2>
     <div class="container-fluid">
-      <form class="" method="post">
-        <div class="row mb-3">
-          <label for="username"> Username </label>
-          <input type="text" class="form-control" placeholder="Username" name="username" value="{{ get_user_detials.username }}" readonly>
+      <div class="row">
+        <div class="col">
+          <!-- column 1 -->
         </div>
-        <div class="row mb-3">
-          <label for="first_name"> First name </label>
-          <input type="text" class="form-control" placeholder="First name" name="first_name" value="{{ get_user_detials.first_name }}">
+        <div class="col-6">
+          <form class="" method="post">
+            <div class="row mb-3">
+              <label for="username"> Username </label>
+              <input type="text" class="form-control" placeholder="Username" name="username" value="{{ check_for_login.1 }}" readonly>
+            </div>
+            <div class="row mb-3">
+              <label for="first_name"> First name </label>
+              <input type="text" class="form-control" placeholder="First name" name="first_name" value="{{ check_for_login.2 }}">
+            </div>
+            <div class="row mb-3">
+              <label for="last_name"> Last Name </label>
+              <input type="text" class="form-control" placeholder="Last name" name="last_name" value="{{ check_for_login.3 }}">
+            </div>
+            <div class="row mb-3">
+              <label for="password"> Type in new password to change </label>
+              <input type="password" id="password" class="form-control" placeholder="Password" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </form>
         </div>
-        <div class="row mb-3">
-          <label for="last_name"> Last Name </label>
-          <input type="text" class="form-control" placeholder="Last name" name="last_name" value="{{ get_user_detials.last_name }}">
+        <div class="col">
+          <div class="d-flex align-self-end">
+            <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
+          </div>
         </div>
-        <div class="row mb-3">
-          <label for="password"> Type in new password to change </label>
-          <input type="password" id="password" class="form-control" placeholder="Password" name="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Update</button>
-      </form>
-    <div class="container-fluid">
+      </div>
   </div>
-  <br>
-  <div class="d-flex justify-content-end">
-    <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
-  </div>
+
 
 
 

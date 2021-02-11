@@ -8,9 +8,11 @@ class User(object):
         self.last_name = last_name
         self._password = password
 
+
     @property
     def id(self):
         return self._id
+
 
     def add_user(self, cursor):
         if self._id == -1:
@@ -20,16 +22,6 @@ class User(object):
             return 'user_added'
         return False
 
-    @staticmethod
-    def load_logedin_user(cursor):
-        sql = """SELECT * FROM users WHERE loged_in = True ;"""
-        cursor.execute(sql)
-        details = cursor.fetchone()
-        if details:
-            id_, username, first_name, last_name, password, loged_in = details
-            user_details = User(username, first_name, last_name)
-            user_details._id = id_
-            return user_details
 
     @staticmethod
     def log_in(username, password, cursor):
@@ -51,6 +43,7 @@ class User(object):
         else:
             return 'no user'
 
+
     @staticmethod
     def login_check(cursor):
         """ Function will check if any of the users has atribute loged_in set to True.
@@ -62,6 +55,7 @@ class User(object):
         check = cursor.fetchone()
         if check:
             return check
+
 
     @staticmethod
     def logout(cursor):
