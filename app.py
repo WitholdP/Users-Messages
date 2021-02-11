@@ -75,9 +75,9 @@ def messages():
     cursor = connection.cursor()
     check_for_login = User.login_check(cursor)
     if check_for_login:
-        loged_in_check = True
+        users = User.get_all_users(cursor)
         connection.close()
-        return render_template('messages.html', check_for_login = check_for_login)
+        return render_template('messages.html', check_for_login = check_for_login, users = users)
 
     connection.close()
     return redirect('/')

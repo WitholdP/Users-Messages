@@ -94,3 +94,13 @@ class User(object):
         for user in users:
             users_list.append(user)
         return users_list
+
+class Message():
+    """Class created for the mesages in the database"""
+
+    def __init__(self, from_id, to_id, message=""):
+        self.from_id = from_id
+        self.to_id = to_id
+        self.message = message
+
+    

@@ -1,8 +1,78 @@
 {% extends 'base.html'%}
 
 {% block content %}
+
+{% if message %}
+  <div class="alert alert-success" role="alert">
+    {{ message }}
+  </div>
+{% endif %}
+
 <div class="container-fluid">
-  <h1>Messages</h1>
+  <br>
+  <div class="d-flex justify-content-center"><h1>Messages</h1></div>
+  <br><br>
+  <div class="container">
+    <div class="row">
+    <div class="col">
+      <div class="d-flex justify-content-center"><h3>Send message</h3></div>
+      <br>
+      <form class="" method="post">
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Select reciepient</option>
+          {% for user in users %}
+            <option value="{{ user.0 }}">{{ user.1 }}</option>
+          {% endfor %}
+        </select>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-success">Send</button>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <div class="d-flex justify-content-center"><h3>Inbox</h3></div>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">From</th>
+          <th scope="col">Message</th>
+          <th scope="col">Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">User_1</th>
+          <td> Cześć frajerze </td>
+          <td>12-12-2020</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <div class="d-flex justify-content-center"><h3>Sent</h3></div>
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">To</th>
+          <th scope="col">Message</th>
+          <th scope="col">Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">User_1</th>
+          <td> Cześć frajerze </td>
+          <td>12-12-2020</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}
