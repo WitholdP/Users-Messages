@@ -8,11 +8,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    message = request.args.get('message', '')
     connection = connect()
     cursor = connection.cursor()
     check_for_login = User.login_check(cursor)
     connection.close()
-    return render_template('index.html', check_for_login = check_for_login)
+    return render_template('index.html', check_for_login = check_for_login, message=message)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -49,7 +50,7 @@ def login():
             message = 'Wrong password bitch!'
         elif login_check == 'loged in':
             connection.close()
-            return redirect('/')
+            return redirect('/?message=dupa')
 
     connection.close()
     return render_template('login.html', message = message, check_for_login = check_for_login)
@@ -83,7 +84,7 @@ def messages():
             new_message = Message(check_for_login[0], request.form['to_id'], request.form['message'])
             send_message = new_message.send_message(cursor)
             if send_message:
-                message = f"Message sent!"
+                message = "Message sent!"
         connection.close()
         return render_template('messages.html', check_for_login = check_for_login, users = users, message = message, inbox = inbox, sent=sent)
 
